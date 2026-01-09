@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>School Helper AI - Mobile Optimized</title>
+    <title>School Helper AI - Final Mobile</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -29,11 +29,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Besser für Mobile Scroll */
+            /* Zentriert das GUI vertikal perfekt */
+            justify-content: center; 
             min-height: 100vh;
             background-color: var(--bg);
             overflow-y: auto;
-            padding: 20px 10px; /* Weniger Abstand am Rand auf Handy */
+            padding: 40px 15px;
             box-sizing: border-box;
             color: var(--text);
             transition: background 0.3s;
@@ -55,15 +56,17 @@
 
         .container {
             background-color: var(--card);
-            padding: 25px 20px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            width: 100%; /* Volle Breite... */
-            max-width: 420px; /* ...aber maximal 420px */
+            padding: 30px 20px;
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
             backdrop-filter: blur(15px);
             border: 1px solid var(--border);
             position: relative;
             box-sizing: border-box;
+            /* Verhindert, dass es auf kleinen Bildschirmen oben rausrutscht */
+            margin: auto; 
         }
 
         .theme-toggle {
@@ -78,26 +81,25 @@
 
         h1 {
             text-align: center; margin: 10px 0 25px 0;
-            font-size: 1.5rem; font-weight: 800;
+            font-size: 1.6rem; font-weight: 800;
             background: linear-gradient(135deg, #6366f1, #a855f7);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .input-group { margin-bottom: 20px; }
+        .input-group { margin-bottom: 18px; text-align: left; }
         label { 
-            display: block; margin-bottom: 8px; 
-            font-weight: 700; font-size: 0.7rem; 
-            opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; 
+            display: block; margin-bottom: 6px; 
+            font-weight: 700; font-size: 0.75rem; 
+            color: var(--text); opacity: 0.8;
+            text-transform: uppercase; letter-spacing: 0.8px; 
         }
 
         select, input {
-            width: 100%; 
-            height: 50px; /* Größere Klickfläche für Finger */
+            width: 100%; height: 50px; 
             padding: 0 16px; border-radius: 14px;
             border: 2px solid var(--border); background: var(--card);
             color: var(--text); font-family: inherit; font-size: 1rem;
             box-sizing: border-box; outline: none; transition: 0.3s;
-            -webkit-appearance: none; /* Entfernt Standard-Style auf iOS */
         }
 
         .main-btn {
@@ -106,17 +108,16 @@
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
             color: white !important; font-family: 'Inter', sans-serif; 
             font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-            text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            text-transform: uppercase; letter-spacing: 1.2px;
         }
 
         #result {
-            margin-top: 25px; padding: 15px;
-            background: rgba(99, 102, 241, 0.08);
-            border-radius: 18px; display: none;
-            border-left: 4px solid var(--primary);
+            margin-top: 25px; padding: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 20px; display: none;
+            border-left: 5px solid var(--primary);
             color: var(--text);
-            font-size: 0.95rem;
         }
 
         .copy-btn {
@@ -126,18 +127,24 @@
             cursor: pointer; font-weight: 700; width: 100%;
         }
 
-        .footer { margin-top: 30px; font-size: 0.7rem; text-align: center; opacity: 0.6; padding-bottom: 20px; }
-        .loader { display: none; text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
-
-        /* Kleine Anpassung für sehr schmale Handys */
-        @media (max-width: 360px) {
-            .container { padding: 20px 15px; }
-            h1 { font-size: 1.3rem; }
+        /* FOOTER MIT GROQ TEXT - JETZT SICHTBAR */
+        .footer { 
+            margin-top: 30px; 
+            font-size: 0.8rem; 
+            text-align: center; 
+            font-weight: 600;
+            color: var(--text);
+            opacity: 0.8; 
+            padding-bottom: 20px;
         }
+        .footer a { color: var(--primary); text-decoration: none; font-weight: 800; }
+        
+        .loader { display: none; text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
     </style>
 </head>
 <body>
     <div id="bg-pattern"></div>
+    
     <div class="container">
         <button class="theme-toggle" onclick="toggleTheme()" id="tBtn">🌙</button>
         <h1>🎓 School Helper</h1>
@@ -154,7 +161,7 @@
             <select id="subject">
                 <option>Mathematik</option><option>Deutsch</option><option>Englisch</option>
                 <option>Biologie</option><option>Physik</option><option>Chemie</option>
-                <option>Geschichte</option><option>Geographie</option>
+                <option>Geschichte</option><option>Erdkunde</option>
             </select>
         </div>
 
@@ -167,18 +174,22 @@
 
         <div class="input-group">
             <label>Thema</label>
-            <input type="text" id="topic" placeholder="Thema eingeben...">
+            <input type="text" id="topic" placeholder="z.B. Brüche">
         </div>
 
         <button class="main-btn" onclick="ask()">Aufgaben generieren</button>
-        <div class="loader" id="loader">KI rechnet...</div>
+        
+        <div class="loader" id="loader">KI plant Aufgaben...</div>
         
         <div id="result">
-            <div id="content" style="white-space: pre-wrap; line-height: 1.5;"></div>
-            <button class="copy-btn" onclick="copyText()">Kopieren</button>
+            <div id="content" style="white-space: pre-wrap; line-height: 1.6;"></div>
+            <button class="copy-btn" onclick="copyText()">Inhalt kopieren</button>
         </div>
     </div>
-    <div class="footer">Created by Dimitrij S.</div>
+
+    <div class="footer">
+        Created by Dimitrij S. │ Powered by <a href="https://groq.com" target="_blank">Groq Cloud AI</a>
+    </div>
 
 <script>
     function toggleTheme() {
@@ -203,23 +214,28 @@
         const key = "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";
         const g = document.getElementById('grade').value, s = document.getElementById('subject').value, 
               d = document.getElementById('difficulty').value, t = document.getElementById('topic').value;
-        if(!t) return alert("Thema?");
+        if(!t) return alert("Bitte Thema eingeben!");
+        
         document.getElementById('loader').style.display = "block";
         document.getElementById('result').style.display = "none";
+        
         try {
             const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: "POST",
                 headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
-                    messages: [{role: "user", content: `Erstelle 3 Aufgaben für Klasse ${g}, Fach ${s}, Thema ${t}, Schwierigkeit ${d}.`}]
+                    messages: [{role: "user", content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}, Schwierigkeit ${d}.`}]
                 })
             });
             const data = await r.json();
             document.getElementById('content').innerText = data.choices[0].message.content;
             document.getElementById('result').style.display = "block";
-        } catch (e) { alert("Fehler!"); }
-        finally { document.getElementById('loader').style.display = "none"; }
+        } catch (e) { 
+            alert("Fehler bei der Verbindung!"); 
+        } finally { 
+            document.getElementById('loader').style.display = "none"; 
+        }
     }
 </script>
 </body>
