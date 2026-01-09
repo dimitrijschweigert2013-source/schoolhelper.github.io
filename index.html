@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Helper AI - Elite Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f3f4f6;
+            --card: rgba(255, 255, 255, 0.9);
+            --text: #000000; 
+            --primary: #6366f1;
+            --border: #d1d5db;
+            --dot-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #05070a;
+            --card: rgba(20, 25, 40, 0.95);
+            --text: #ffffff; 
+            --border: #334155;
+            --dot-color: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--bg);
+            overflow-y: auto;
+            padding: 60px 0;
+            box-sizing: border-box;
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        #bg-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+            animation: moveBg 100s linear infinite;
+        }
+
+        @keyframes moveBg {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        .container {
+            background-color: var(--card);
+            padding: 30px;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 380px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle {
+            position: absolute; top: 15px; right: 15px;
+            background: rgba(125, 125, 125, 0.1);
+            border: 1px solid var(--border); 
+            color: var(--text);
+            width: 36px; height: 36px; border-radius: 10px;
+            cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* TITEL WIEDER LILA GRADIENT */
+        h1 {
+            text-align: center; 
+            margin-bottom: 25px;
+            font-size: 1.6rem; 
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        .input-group { margin-bottom: 18px; }
+        label { 
+            display: block; margin-bottom: 6px; 
+            font-weight: 700; font-size: 0.75rem; 
+            color: var(--text);
+            opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px; 
+        }
+
+        select, input {
+            width: 100%; padding: 12px 16px; border-radius: 14px;
+            border: 2px solid var(--border); background: var(--card);
+            color: var(--text);
+            font-family: inherit; font-size: 0.95rem;
+            box-sizing: border-box; outline: none; transition: 0.3s;
+        }
+
+        select:focus, input:focus { border-color: var(--primary); }
+
+        .main-btn {
+            width: 100%; 
+            padding: 16px; 
+            margin-top: 10px;
+            border: none; 
+            border-radius: 14px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white !important;
+            font-family: 'Inter', sans-serif; 
+            font-size: 0.95rem; 
+            font-weight: 600;
+            cursor: pointer; 
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+            text-transform: uppercase; 
+            letter-spacing: 1.2px;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+            filter: brightness(1.1);
+        }
+
+        #result {
+            margin-top: 25px; padding: 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 18px; display: none;
+            border-left: 5px solid var(--primary);
+            color: var(--text);
+        }
+
+        .footer { 
+            margin-top: 30px; 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            color: var(--text);
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+        .footer a { color: var(--primary); text-decoration: none; font-weight: 800; }
+        
+        .loader { display: none; text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div id="bg-pattern"></div>
+
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()" id="tBtn">🌙</button>
+        <h1>🎓 School Helper</h1>
+
+        <div class="input-group">
+            <label>KLASSENSTUFE</label>
+            <select id="grade">
+                <script>for(let i=1; i<=10; i++) document.write(`<option value="${i}">Klasse ${i}</option>`);</script>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>FACH</label>
+            <select id="subject">
+                <option>Mathematik</option><option>Deutsch</option><option>Englisch</option>
+                <option>Biologie</option><option>Physik</option><option>Chemie</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>SCHWIERIGKEITSGRAD</label>
+            <select id="difficulty">
+                <option value="leicht">Leicht (Grundlagen)</option>
+                <option value="mittel" selected>Mittel (Standard)</option>
+                <option value="schwer">Schwer (Experte)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>THEMA</label>
+            <input type="text" id="topic" placeholder="z.B. Prozentrechnung">
+        </div>
+
+        <button class="main-btn" onclick="ask()">Aufgaben generieren</button>
+
+        <div class="loader" id="loader">KI plant Aufgaben...</div>
+        <div id="result"><div id="content" style="white-space: pre-wrap; line-height: 1.6;"></div></div>
+    </div>
+
+    <div class="footer">
+        Created by Dimitrij S. │ Powered by <a href="https://groq.com" target="_blank">GROQ</a>
+    </div>
+
+<script>
+    function toggleTheme() {
+        const b = document.body;
+        const t = document.getElementById('tBtn');
+        if (b.hasAttribute('data-theme')) {
+            b.removeAttribute('data-theme');
+            t.innerText = '🌙';
+        } else {
+            b.setAttribute('data-theme', 'dark');
+            t.innerText = '☀️';
+        }
+    }
+
+    async function ask() {
+        const key = "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";
+        const g = document.getElementById('grade').value;
+        const s = document.getElementById('subject').value;
+        const d = document.getElementById('difficulty').value;
+        const t = document.getElementById('topic').value;
+        const ld = document.getElementById('loader');
+        const res = document.getElementById('result');
+
+        if(!t) return alert("Thema eingeben!");
+
+        ld.style.display = "block";
+        res.style.display = "none";
+
+        try {
+            const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                method: "POST",
+                headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    model: "llama-3.3-70b-versatile",
+                    messages: [{
+                        role: "user", 
+                        content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}. Schwierigkeit: ${d}.`
+                    }]
+                })
+            });
+            const data = await r.json();
+            document.getElementById('content').innerText = data.choices[0].message.content;
+            res.style.display = "block";
+        } catch (e) { alert("Fehler!"); }
+        finally { ld.style.display = "none"; }
+    }
+</script>
+
+</body>
+</html>
