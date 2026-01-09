@@ -2,13 +2,13 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School Helper AI - Elite Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>School Helper AI - Mobile Optimized</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #f3f4f6;
-            --card: rgba(255, 255, 255, 0.9);
+            --card: rgba(255, 255, 255, 0.95);
             --text: #000000; 
             --primary: #6366f1;
             --border: #d1d5db;
@@ -17,7 +17,7 @@
 
         [data-theme="dark"] {
             --bg: #05070a;
-            --card: rgba(20, 25, 40, 0.95);
+            --card: rgba(20, 25, 40, 0.98);
             --text: #ffffff; 
             --border: #334155;
             --dot-color: rgba(255, 255, 255, 0.05);
@@ -29,14 +29,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Besser für Mobile Scroll */
             min-height: 100vh;
             background-color: var(--bg);
             overflow-y: auto;
-            padding: 60px 0;
+            padding: 20px 10px; /* Weniger Abstand am Rand auf Handy */
             box-sizing: border-box;
             color: var(--text);
-            transition: background 0.3s, color 0.3s;
+            transition: background 0.3s;
         }
 
         #bg-pattern {
@@ -55,15 +55,15 @@
 
         .container {
             background-color: var(--card);
-            padding: 30px;
-            border-radius: 28px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            width: 90%;
-            max-width: 380px;
-            backdrop-filter: blur(12px);
+            padding: 25px 20px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            width: 100%; /* Volle Breite... */
+            max-width: 420px; /* ...aber maximal 420px */
+            backdrop-filter: blur(15px);
             border: 1px solid var(--border);
             position: relative;
-            flex-shrink: 0;
+            box-sizing: border-box;
         }
 
         .theme-toggle {
@@ -71,132 +71,114 @@
             background: rgba(125, 125, 125, 0.1);
             border: 1px solid var(--border); 
             color: var(--text);
-            width: 36px; height: 36px; border-radius: 10px;
-            cursor: pointer; font-size: 1.1rem;
+            width: 40px; height: 40px; border-radius: 12px;
+            cursor: pointer; font-size: 1.2rem;
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* TITEL WIEDER LILA GRADIENT */
         h1 {
-            text-align: center; 
-            margin-bottom: 25px;
-            font-size: 1.6rem; 
-            font-weight: 800;
+            text-align: center; margin: 10px 0 25px 0;
+            font-size: 1.5rem; font-weight: 800;
             background: linear-gradient(135deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .input-group { margin-bottom: 18px; }
+        .input-group { margin-bottom: 20px; }
         label { 
-            display: block; margin-bottom: 6px; 
-            font-weight: 700; font-size: 0.75rem; 
-            color: var(--text);
-            opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px; 
+            display: block; margin-bottom: 8px; 
+            font-weight: 700; font-size: 0.7rem; 
+            opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; 
         }
 
         select, input {
-            width: 100%; padding: 12px 16px; border-radius: 14px;
+            width: 100%; 
+            height: 50px; /* Größere Klickfläche für Finger */
+            padding: 0 16px; border-radius: 14px;
             border: 2px solid var(--border); background: var(--card);
-            color: var(--text);
-            font-family: inherit; font-size: 0.95rem;
+            color: var(--text); font-family: inherit; font-size: 1rem;
             box-sizing: border-box; outline: none; transition: 0.3s;
+            -webkit-appearance: none; /* Entfernt Standard-Style auf iOS */
         }
-
-        select:focus, input:focus { border-color: var(--primary); }
 
         .main-btn {
-            width: 100%; 
-            padding: 16px; 
-            margin-top: 10px;
-            border: none; 
-            border-radius: 14px;
+            width: 100%; padding: 18px; margin-top: 10px;
+            border: none; border-radius: 16px;
             background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white !important;
-            font-family: 'Inter', sans-serif; 
-            font-size: 0.95rem; 
-            font-weight: 600;
-            cursor: pointer; 
-            transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
-            text-transform: uppercase; 
-            letter-spacing: 1.2px;
-        }
-
-        .main-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
-            filter: brightness(1.1);
+            color: white !important; font-family: 'Inter', sans-serif; 
+            font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+            text-transform: uppercase; letter-spacing: 1px;
         }
 
         #result {
-            margin-top: 25px; padding: 20px;
-            background: rgba(99, 102, 241, 0.1);
+            margin-top: 25px; padding: 15px;
+            background: rgba(99, 102, 241, 0.08);
             border-radius: 18px; display: none;
-            border-left: 5px solid var(--primary);
+            border-left: 4px solid var(--primary);
             color: var(--text);
+            font-size: 0.95rem;
         }
 
-        .footer { 
-            margin-top: 30px; 
-            font-size: 0.75rem; 
-            font-weight: 600; 
-            color: var(--text);
-            opacity: 0.8;
-            flex-shrink: 0;
+        .copy-btn {
+            margin-top: 15px; background: var(--primary);
+            border: none; color: white;
+            padding: 12px; border-radius: 12px; font-size: 0.9rem;
+            cursor: pointer; font-weight: 700; width: 100%;
         }
-        .footer a { color: var(--primary); text-decoration: none; font-weight: 800; }
-        
+
+        .footer { margin-top: 30px; font-size: 0.7rem; text-align: center; opacity: 0.6; padding-bottom: 20px; }
         .loader { display: none; text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
+
+        /* Kleine Anpassung für sehr schmale Handys */
+        @media (max-width: 360px) {
+            .container { padding: 20px 15px; }
+            h1 { font-size: 1.3rem; }
+        }
     </style>
 </head>
 <body>
-
     <div id="bg-pattern"></div>
-
     <div class="container">
         <button class="theme-toggle" onclick="toggleTheme()" id="tBtn">🌙</button>
         <h1>🎓 School Helper</h1>
-
+        
         <div class="input-group">
-            <label>KLASSENSTUFE</label>
+            <label>Klassenstufe</label>
             <select id="grade">
-                <script>for(let i=1; i<=10; i++) document.write(`<option value="${i}">Klasse ${i}</option>`);</script>
+                <script>for(let i=1; i<=13; i++) document.write(`<option value="${i}">Klasse ${i}</option>`);</script>
             </select>
         </div>
 
         <div class="input-group">
-            <label>FACH</label>
+            <label>Fach</label>
             <select id="subject">
                 <option>Mathematik</option><option>Deutsch</option><option>Englisch</option>
                 <option>Biologie</option><option>Physik</option><option>Chemie</option>
+                <option>Geschichte</option><option>Geographie</option>
             </select>
         </div>
 
         <div class="input-group">
-            <label>SCHWIERIGKEITSGRAD</label>
+            <label>Schwierigkeit</label>
             <select id="difficulty">
-                <option value="leicht">Leicht (Grundlagen)</option>
-                <option value="mittel" selected>Mittel (Standard)</option>
-                <option value="schwer">Schwer (Experte)</option>
+                <option value="leicht">Leicht</option><option value="mittel" selected>Mittel</option><option value="schwer">Schwer</option>
             </select>
         </div>
 
         <div class="input-group">
-            <label>THEMA</label>
-            <input type="text" id="topic" placeholder="z.B. Prozentrechnung">
+            <label>Thema</label>
+            <input type="text" id="topic" placeholder="Thema eingeben...">
         </div>
 
         <button class="main-btn" onclick="ask()">Aufgaben generieren</button>
-
-        <div class="loader" id="loader">KI plant Aufgaben...</div>
-        <div id="result"><div id="content" style="white-space: pre-wrap; line-height: 1.6;"></div></div>
+        <div class="loader" id="loader">KI rechnet...</div>
+        
+        <div id="result">
+            <div id="content" style="white-space: pre-wrap; line-height: 1.5;"></div>
+            <button class="copy-btn" onclick="copyText()">Kopieren</button>
+        </div>
     </div>
-
-    <div class="footer">
-        Created by Dimitrij S. │ Powered by <a href="https://groq.com" target="_blank">GROQ</a>
-    </div>
+    <div class="footer">Created by Dimitrij S.</div>
 
 <script>
     function toggleTheme() {
@@ -211,39 +193,34 @@
         }
     }
 
+    function copyText() {
+        const text = document.getElementById('content').innerText;
+        navigator.clipboard.writeText(text);
+        alert("Kopiert!");
+    }
+
     async function ask() {
         const key = "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";
-        const g = document.getElementById('grade').value;
-        const s = document.getElementById('subject').value;
-        const d = document.getElementById('difficulty').value;
-        const t = document.getElementById('topic').value;
-        const ld = document.getElementById('loader');
-        const res = document.getElementById('result');
-
-        if(!t) return alert("Thema eingeben!");
-
-        ld.style.display = "block";
-        res.style.display = "none";
-
+        const g = document.getElementById('grade').value, s = document.getElementById('subject').value, 
+              d = document.getElementById('difficulty').value, t = document.getElementById('topic').value;
+        if(!t) return alert("Thema?");
+        document.getElementById('loader').style.display = "block";
+        document.getElementById('result').style.display = "none";
         try {
             const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: "POST",
                 headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
-                    messages: [{
-                        role: "user", 
-                        content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}. Schwierigkeit: ${d}.`
-                    }]
+                    messages: [{role: "user", content: `Erstelle 3 Aufgaben für Klasse ${g}, Fach ${s}, Thema ${t}, Schwierigkeit ${d}.`}]
                 })
             });
             const data = await r.json();
             document.getElementById('content').innerText = data.choices[0].message.content;
-            res.style.display = "block";
+            document.getElementById('result').style.display = "block";
         } catch (e) { alert("Fehler!"); }
-        finally { ld.style.display = "none"; }
+        finally { document.getElementById('loader').style.display = "none"; }
     }
 </script>
-
 </body>
 </html>
