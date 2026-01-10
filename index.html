@@ -135,7 +135,6 @@
             border: 1px solid var(--primary);
         }
 
-        /* SEO CONTENT STYLING */
         .info-content {
             max-width: 650px;
             padding: 60px 20px;
@@ -144,11 +143,19 @@
             color: var(--text);
         }
 
-        .info-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 30px; }
-        .info-content h3 { color: var(--secondary); margin-top: 25px; }
+        .info-content h2 { color: var(--primary); font-size: 1.8rem; margin-top: 40px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .info-content h3 { color: var(--secondary); margin-top: 25px; font-size: 1.2rem; }
         .info-content p { opacity: 0.85; margin-bottom: 15px; }
-        .info-content ul { padding-left: 20px; opacity: 0.85; }
-        .info-content li { margin-bottom: 10px; }
+
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+        }
+
+        .faq-item strong { color: var(--primary); display: block; margin-bottom: 8px; font-size: 1.1rem; }
 
         .theme-btn {
             background: var(--card);
@@ -225,32 +232,42 @@
     </div>
 
     <section class="info-content">
-        <h2>Warum School Helper AI nutzen?</h2>
+        <h2>Über School Helper AI</h2>
         <p>
-            <strong>School Helper AI</strong> ist dein digitaler Tutor für den Schulalltag. Unsere Plattform nutzt fortschrittliche künstliche Intelligenz, um Schülern dabei zu helfen, Lerninhalte zu vertiefen. Egal ob du dich auf ein Mathe-Abitur vorbereitest oder Vokabeln für Englisch üben möchtest – wir bieten dir personalisierte Aufgaben in Sekundenschnelle.
+            <strong>School Helper AI</strong> ist eine innovative Lernplattform, die Schülern dabei hilft, den Lernstoff aus der Schule effektiv zu wiederholen. Durch den Einsatz modernster KI-Technologie generieren wir maßgeschneiderte Übungsaufgaben für alle gängigen Schulfächer.
         </p>
 
-        <h3>Kostenloses Lernen für alle Klassenstufen</h3>
+        <h3>Individuell & Blitzschnell</h3>
         <p>
-            Von der Grundschule bis zum Gymnasium (Klasse 1-13) deckt unsere KI alle relevanten Themengebiete ab. Wir glauben, dass Bildung zugänglich sein sollte. Deshalb bieten wir den School Helper AI völlig kostenlos an. 
+            Egal ob kurz vor der Klassenarbeit oder zur täglichen Hausaufgaben-Vorbereitung: Gib einfach dein Thema ein und erhalte sofort drei Übungsaufgaben inklusive Lösungen. So macht Lernen Spaß und ist effizient.
         </p>
 
-        <h3>Individuelle Aufgabenstellung</h3>
-        <p>
-            Herkömmliche Arbeitsblätter sind oft starr. Unsere KI passt sich genau deinem Wunsch-Thema an. Wenn du "Kurvendiskussion mit Logarithmusfunktionen" eingibst, erhältst du exakt dazu passende Aufgaben – nicht mehr und nicht weniger.
-        </p>
+        <h2>Häufig gestellte Fragen (FAQ)</h2>
         
-        <ul>
-            <li><strong>Präzise Ergebnisse:</strong> Aufgaben exakt zu deinem aktuellen Schulthema.</li>
-            <li><strong>Sofortige Lösungen:</strong> Erhalte direkt die Ergebnisse zur Selbstkontrolle.</li>
-            <li><strong>Modernste Technik:</strong> Powered by Groq AI für blitzschnelle Antworten.</li>
-            <li><strong>Einfache Bedienung:</strong> Keine Registrierung, kein Login, direkt loslegen.</li>
-        </ul>
+        <div class="faq-item">
+            <strong>Ist die Nutzung von School Helper AI wirklich kostenlos?</strong>
+            <p>Ja, unser Service ist komplett kostenlos. Wir finanzieren uns über dezente Werbung, um die Server- und KI-Kosten zu decken, damit Bildung für jeden zugänglich bleibt.</p>
+        </div>
 
-        <h3>Vorbereitung auf Klausuren leicht gemacht</h3>
-        <p>
-            Oft fehlen zusätzliche Übungsaufgaben im Schulbuch. Hier springt der School Helper AI ein. Generiere dir so viele Aufgaben, wie du benötigst, um ein Thema wirklich zu verstehen.
-        </p>
+        <div class="faq-item">
+            <strong>Für welche Klassenstufen ist das Tool geeignet?</strong>
+            <p>Die KI ist darauf trainiert, Aufgaben für die Klassen 1 bis 13 zu erstellen. Sie passt das Schwierigkeitsniveau automatisch an die gewählte Klassenstufe an.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Muss ich mich registrieren, um Aufgaben zu erstellen?</strong>
+            <p>Nein. Wir glauben an barrierefreies Lernen. Du kannst direkt ohne Account und ohne Angabe von E-Mail-Adressen loslegen.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Wie genau sind die Lösungen der KI?</strong>
+            <p>Wir nutzen das Llama 3.3 Modell, welches extrem präzise arbeitet. Dennoch empfehlen wir, die Ergebnisse immer mit den Unterlagen aus dem Unterricht abzugleichen, da eine KI in seltenen Fällen kleine Fehler machen kann.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Werden meine Daten gespeichert?</strong>
+            <p>Datenschutz wird bei uns großgeschrieben. Die eingegebenen Themen werden nur temporär zur Erzeugung der Aufgaben verwendet und nicht dauerhaft in Profilen gespeichert.</p>
+        </div>
     </section>
 
     <footer class="footer">
