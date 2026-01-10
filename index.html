@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>School Helper AI - Final Mobile</title>
+    <title>School Helper AI - Dein KI-Lernpartner</title>
+    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3294378261691384" crossorigin="anonymous"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Inter:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg: #f3f4f6;
             --card: rgba(255, 255, 255, 0.95);
-            --text: #000000; 
+            --text: #1f2937; 
             --primary: #6366f1;
             --border: #d1d5db;
             --dot-color: rgba(0, 0, 0, 0.1);
@@ -20,7 +22,7 @@
         [data-theme="dark"] {
             --bg: #05070a;
             --card: rgba(20, 25, 40, 0.98);
-            --text: #ffffff; 
+            --text: #f3f4f6; 
             --border: #334155;
             --dot-color: rgba(255, 255, 255, 0.05);
         }
@@ -31,16 +33,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; 
             min-height: 100vh;
             background-color: var(--bg);
-            overflow-y: auto;
-            padding: 20px 15px;
-            box-sizing: border-box;
             color: var(--text);
             transition: background 0.3s;
+            padding: 0;
         }
 
+        /* Hintergrund-Animation */
         #bg-pattern {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -55,35 +55,46 @@
             to { background-position: 1000px 1000px; }
         }
 
+        /* Navigation */
+        nav {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
         .container {
             background-color: var(--card);
             padding: 30px 20px;
             border-radius: 28px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            width: 92%;
             max-width: 400px;
             backdrop-filter: blur(15px);
             border: 1px solid var(--border);
             position: relative;
             box-sizing: border-box;
-            margin: auto; 
         }
 
-        /* Styling für Werbe-Plätze */
         .ad-box {
             width: 100%;
             margin: 15px 0;
+            min-height: 90px;
             background: rgba(125,125,125,0.05);
             border-radius: 12px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 10px;
             color: var(--text);
-            opacity: 0.5;
+            opacity: 0.7;
             overflow: hidden;
+            border: 1px dashed var(--border);
         }
 
         .theme-toggle {
-            position: absolute; top: 15px; right: 15px;
             background: rgba(125, 125, 125, 0.1);
             border: 1px solid var(--border); 
             color: var(--text);
@@ -94,7 +105,7 @@
 
         h1 {
             text-align: center; margin: 10px 0 25px 0;
-            font-size: 1.6rem; font-weight: 800;
+            font-size: 1.8rem; font-weight: 800;
             background: linear-gradient(135deg, #6366f1, #a855f7);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
@@ -103,7 +114,7 @@
         label { 
             display: block; margin-bottom: 6px; 
             font-weight: 700; font-size: 0.75rem; 
-            color: var(--text); opacity: 0.8;
+            opacity: 0.8;
             text-transform: uppercase; letter-spacing: 0.8px; 
         }
 
@@ -127,25 +138,25 @@
 
         #result {
             margin-top: 25px; padding: 20px;
-            background: rgba(99, 102, 241, 0.1);
+            background: rgba(99, 102, 241, 0.05);
             border-radius: 20px; display: none;
-            border: 1px solid var(--border);
+            border: 1px solid var(--primary);
             color: var(--text);
         }
 
-        .reset-btn {
-            width: 100%; padding: 12px; margin-top: 15px;
-            border: 1px solid var(--border); border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text); font-family: 'Inter', sans-serif; 
-            font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.2s;
+        .content-text {
+            max-width: 400px;
+            margin: 40px 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            text-align: left;
         }
 
         .footer { 
-            margin-top: 30px; font-size: 0.8rem; text-align: center; 
-            font-weight: 600; color: var(--text); opacity: 0.8; padding-bottom: 20px;
+            margin-top: auto; font-size: 0.8rem; text-align: center; 
+            font-weight: 600; opacity: 0.8; padding: 40px 20px;
         }
-        .footer a { color: var(--primary); text-decoration: none; font-weight: 800; }
+        .footer a { color: var(--primary); text-decoration: none; font-weight: 800; margin: 0 10px; }
         
         .loader { display: none; text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
     </style>
@@ -153,16 +164,21 @@
 <body>
     <div id="bg-pattern"></div>
     
-    <div class="container">
+    <nav>
+        <div style="font-weight: 800; font-size: 1.2rem;">SH.AI</div>
         <button class="theme-toggle" onclick="toggleTheme()" id="tBtn">🌙</button>
+    </nav>
+
+    <div class="container">
         <h1>🎓 School Helper</h1>
 
         <div class="ad-box">
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-3294378261691384"
-                 data-ad-slot="DEINE_OBERE_SLOT_ID"
-                 data-ad-format="horizontal"></ins>
+                 data-ad-slot="DEINE_ID"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         
@@ -183,40 +199,39 @@
         </div>
 
         <div class="input-group">
-            <label>Schwierigkeit</label>
-            <select id="difficulty">
-                <option value="leicht">Leicht</option><option value="mittel" selected>Mittel</option><option value="schwer">Schwer</option>
-            </select>
-        </div>
-
-        <div class="input-group">
             <label>Thema</label>
-            <input type="text" id="topic" placeholder="z.B. Brüche">
+            <input type="text" id="topic" placeholder="z.B. Satz des Pythagoras">
         </div>
 
         <button class="main-btn" onclick="ask()">Aufgaben generieren</button>
         
-        <div class="loader" id="loader">KI plan Aufgaben...</div>
+        <div class="loader" id="loader">KI erstellt Übungen...</div>
         
         <div id="result">
             <div id="content" style="white-space: pre-wrap; line-height: 1.6;"></div>
-
-            <div class="ad-box">
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3294378261691384"
-                     data-ad-slot="DEINE_UNTERE_SLOT_ID"
-                     data-ad-format="rectangle"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
-
-            <button class="reset-btn" onclick="resetGUI()">Reset</button>
+            <button class="main-btn" style="background: var(--border); margin-top:20px; font-size:0.8rem;" onclick="resetGUI()">Neue Suche</button>
         </div>
     </div>
 
+    <div class="content-text">
+        <h2>Individuelle Lernunterstützung durch KI</h2>
+        <p>Willkommen beim <strong>School Helper AI</strong>. Unsere Plattform hilft Schülern dabei, komplexe Themen durch maßgeschneiderte Übungsaufgaben besser zu verstehen. Egal ob Mathematik, Physik oder Deutsch – die KI passt die Aufgaben an deine Klassenstufe an.</p>
+        
+        <h3>Warum mit School Helper üben?</h3>
+        <ul>
+            <li><strong>Prüfungsvorbereitung:</strong> Generiere Aufgaben, die genau deinen Lernstoff abdecken.</li>
+            <li><strong>Sofortige Hilfe:</strong> Erhalte in Sekundenschnelle neue Herausforderungen.</li>
+            <li><strong>Kostenlos:</strong> Unser Tool steht allen Schülern zur freien Verfügung.</li>
+        </ul>
+        <p>Nutze die Kraft der künstlichen Intelligenz (Llama 3.3), um deine Noten zu verbessern und Wissenslücken gezielt zu schließen.</p>
+    </div>
+
     <div class="footer">
-        Created by Dimitrij S. │ <a href="#">Datenschutz</a><br>
-        Powered by <a href="https://groq.com" target="_blank">Groq Cloud AI</a>
+        <div style="margin-bottom: 15px;">
+            <a href="impressum.html">Impressum</a>
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+        Created by Dimitrij S. │ Powered by Groq Cloud
     </div>
 
 <script>
@@ -235,15 +250,17 @@
     function resetGUI() {
         document.getElementById('result').style.display = "none";
         document.getElementById('topic').value = "";
-        document.getElementById('content').innerText = "";
+        window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     async function ask() {
-        // HINWEIS: Key sollte eigentlich im Backend geschützt sein!
-        const key = "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";
-        const g = document.getElementById('grade').value, s = document.getElementById('subject').value, 
-              d = document.getElementById('difficulty').value, t = document.getElementById('topic').value;
-        if(!t) return alert("Bitte Thema eingeben!");
+        // ACHTUNG: Key ist im Frontend sichtbar. Nur für Testzwecke!
+        const key = "DEIN_GROQ_API_KEY_HIER_EINTRAGEN";
+        const g = document.getElementById('grade').value, 
+              s = document.getElementById('subject').value, 
+              t = document.getElementById('topic').value;
+
+        if(!t) return alert("Bitte gib ein Thema ein!");
         
         document.getElementById('loader').style.display = "block";
         document.getElementById('result').style.display = "none";
@@ -254,18 +271,14 @@
                 headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
-                    messages: [{role: "user", content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}, Schwierigkeit ${d}.`}]
+                    messages: [{role: "user", content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}. Füge am Ende kurz die Lösungen hinzu.`}]
                 })
             });
             const data = await r.json();
-
-            // GOOGLE ADS CONVERSION TRIGGER (falls eingerichtet)
-            // if(window.gtag) gtag('event', 'conversion', {'send_to': 'AW-XXXX/XXXX'});
-
             document.getElementById('content').innerText = data.choices[0].message.content;
             document.getElementById('result').style.display = "block";
         } catch (e) { 
-            alert("Fehler bei der Verbindung!"); 
+            alert("Fehler bei der Verbindung zur KI!"); 
         } finally { 
             document.getElementById('loader').style.display = "none"; 
         }
