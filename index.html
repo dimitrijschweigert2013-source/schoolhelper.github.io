@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>School Helper AI - Dein KI-Lernpartner</title>
+    <title>School Helper AI - KI-Übungsaufgaben für Schüler</title>
+    <meta name="description" content="Kostenlose KI-gestützte Übungsaufgaben für alle Klassenstufen und Fächer. Verbessere deine Noten mit School Helper AI.">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3294378261691384" crossorigin="anonymous"></script>
     
@@ -11,19 +12,20 @@
     
     <style>
         :root {
-            --bg: #f3f4f6;
-            --card: rgba(255, 255, 255, 0.95);
-            --text: #1f2937; 
+            --bg: #f8fafc;
+            --card: rgba(255, 255, 255, 0.98);
+            --text: #0f172a; 
             --primary: #6366f1;
-            --border: #d1d5db;
-            --dot-color: rgba(0, 0, 0, 0.1);
+            --secondary: #a855f7;
+            --border: #e2e8f0;
+            --dot-color: rgba(99, 102, 241, 0.1);
         }
 
         [data-theme="dark"] {
-            --bg: #05070a;
-            --card: rgba(20, 25, 40, 0.98);
-            --text: #f3f4f6; 
-            --border: #334155;
+            --bg: #020617;
+            --card: rgba(15, 23, 42, 0.95);
+            --text: #f8fafc; 
+            --border: #1e293b;
             --dot-color: rgba(255, 255, 255, 0.05);
         }
 
@@ -36,152 +38,157 @@
             min-height: 100vh;
             background-color: var(--bg);
             color: var(--text);
-            transition: background 0.3s;
-            padding: 0;
+            transition: 0.3s;
         }
 
-        /* Hintergrund-Animation */
         #bg-pattern {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             background-image: radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
             background-size: 30px 30px;
-            animation: moveBg 100s linear infinite;
         }
 
-        @keyframes moveBg {
-            from { background-position: 0 0; }
-            to { background-position: 1000px 1000px; }
-        }
-
-        /* Navigation */
-        nav {
+        header {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 20px;
             box-sizing: border-box;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .container {
             background-color: var(--card);
             padding: 30px 20px;
-            border-radius: 28px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            width: 92%;
-            max-width: 400px;
-            backdrop-filter: blur(15px);
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 450px;
             border: 1px solid var(--border);
-            position: relative;
             box-sizing: border-box;
         }
 
-        .ad-box {
+        h1 {
+            text-align: center;
+            margin: 0 0 25px 0;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .input-group { margin-bottom: 20px; }
+        label { 
+            display: block; margin-bottom: 8px; 
+            font-weight: 700; font-size: 0.8rem; 
+            text-transform: uppercase; opacity: 0.7;
+        }
+
+        select, input {
+            width: 100%; height: 55px; 
+            padding: 0 16px; border-radius: 16px;
+            border: 2px solid var(--border); background: transparent;
+            color: var(--text); font-family: inherit; font-size: 1rem;
+            box-sizing: border-box; transition: 0.3s;
+        }
+
+        select:focus, input:focus { border-color: var(--primary); outline: none; }
+
+        .main-btn {
+            width: 100%; padding: 18px; 
+            border: none; border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; font-family: 'Inter', sans-serif; 
+            font-size: 1rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Ad-Box Styling für AdSense-Compliance */
+        .ad-placeholder {
             width: 100%;
-            margin: 15px 0;
-            min-height: 90px;
-            background: rgba(125,125,125,0.05);
-            border-radius: 12px;
+            margin: 20px 0;
+            min-height: 100px;
+            background: rgba(125,125,125,0.03);
+            border: 1px dashed var(--border);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 10px;
-            color: var(--text);
-            opacity: 0.7;
-            overflow: hidden;
-            border: 1px dashed var(--border);
-        }
-
-        .theme-toggle {
-            background: rgba(125, 125, 125, 0.1);
-            border: 1px solid var(--border); 
-            color: var(--text);
-            width: 40px; height: 40px; border-radius: 12px;
-            cursor: pointer; font-size: 1.2rem;
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        h1 {
-            text-align: center; margin: 10px 0 25px 0;
-            font-size: 1.8rem; font-weight: 800;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        .input-group { margin-bottom: 18px; text-align: left; }
-        label { 
-            display: block; margin-bottom: 6px; 
-            font-weight: 700; font-size: 0.75rem; 
-            opacity: 0.8;
-            text-transform: uppercase; letter-spacing: 0.8px; 
-        }
-
-        select, input {
-            width: 100%; height: 50px; 
-            padding: 0 16px; border-radius: 14px;
-            border: 2px solid var(--border); background: var(--card);
-            color: var(--text); font-family: inherit; font-size: 1rem;
-            box-sizing: border-box; outline: none; transition: 0.3s;
-        }
-
-        .main-btn {
-            width: 100%; padding: 18px; margin-top: 10px;
-            border: none; border-radius: 16px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white !important; font-family: 'Inter', sans-serif; 
-            font-size: 1rem; font-weight: 700; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
-            text-transform: uppercase; letter-spacing: 1.2px;
+            text-transform: uppercase;
         }
 
         #result {
-            margin-top: 25px; padding: 20px;
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
             background: rgba(99, 102, 241, 0.05);
-            border-radius: 20px; display: none;
+            border-radius: 20px;
             border: 1px solid var(--primary);
+        }
+
+        /* SEO & Content Section (Wichtig für AdSense Annahme) */
+        .info-content {
+            max-width: 600px;
+            padding: 40px 20px;
+            line-height: 1.8;
+            font-size: 1rem;
             color: var(--text);
+            opacity: 0.9;
         }
 
-        .content-text {
-            max-width: 400px;
-            margin: 40px 20px;
-            line-height: 1.7;
-            font-size: 0.95rem;
-            text-align: left;
+        .theme-btn {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 12px;
+            cursor: pointer;
         }
 
-        .footer { 
-            margin-top: auto; font-size: 0.8rem; text-align: center; 
-            font-weight: 600; opacity: 0.8; padding: 40px 20px;
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.85rem;
+            width: 100%;
+            border-top: 1px solid var(--border);
+            margin-top: 50px;
         }
-        .footer a { color: var(--primary); text-decoration: none; font-weight: 800; margin: 0 10px; }
-        
-        .loader { display: none; text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary); }
+
+        .footer a { color: var(--primary); text-decoration: none; margin: 0 10px; font-weight: 600; }
+
+        .loader { display: none; text-align: center; margin: 20px; font-weight: 700; color: var(--primary); }
     </style>
 </head>
 <body>
     <div id="bg-pattern"></div>
     
-    <nav>
-        <div style="font-weight: 800; font-size: 1.2rem;">SH.AI</div>
-        <button class="theme-toggle" onclick="toggleTheme()" id="tBtn">🌙</button>
-    </nav>
+    <header>
+        <div class="logo">School Helper AI</div>
+        <button class="theme-btn" onclick="toggleTheme()" id="tBtn">🌙 Mode</button>
+    </header>
 
     <div class="container">
-        <h1>🎓 School Helper</h1>
+        <h1>Übung macht den Meister.</h1>
 
-        <div class="ad-box">
+        <div class="ad-placeholder">
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-3294378261691384"
-                 data-ad-slot="DEINE_ID"
-                 data-ad-format="horizontal"
-                 data-full-width-responsive="true"></ins>
+                 data-ad-slot="DEIN_SLOT_1"
+                 data-ad-format="horizontal"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
-        
+
         <div class="input-group">
             <label>Klassenstufe</label>
             <select id="grade">
@@ -190,7 +197,7 @@
         </div>
 
         <div class="input-group">
-            <label>Fach</label>
+            <label>Schulfach</label>
             <select id="subject">
                 <option>Mathematik</option><option>Deutsch</option><option>Englisch</option>
                 <option>Biologie</option><option>Physik</option><option>Chemie</option>
@@ -200,89 +207,95 @@
 
         <div class="input-group">
             <label>Thema</label>
-            <input type="text" id="topic" placeholder="z.B. Satz des Pythagoras">
+            <input type="text" id="topic" placeholder="z.B. Prozentrechnung">
         </div>
 
-        <button class="main-btn" onclick="ask()">Aufgaben generieren</button>
-        
-        <div class="loader" id="loader">KI erstellt Übungen...</div>
-        
+        <button class="main-btn" onclick="ask()">Aufgaben erstellen</button>
+
+        <div class="loader" id="loader">KI generiert Aufgaben...</div>
+
         <div id="result">
-            <div id="content" style="white-space: pre-wrap; line-height: 1.6;"></div>
-            <button class="main-btn" style="background: var(--border); margin-top:20px; font-size:0.8rem;" onclick="resetGUI()">Neue Suche</button>
+            <div id="content" style="white-space: pre-wrap;"></div>
+            <button onclick="reset()" style="margin-top:20px; cursor:pointer; background:none; border:none; color:var(--primary); font-weight:bold;">↺ Neu starten</button>
         </div>
     </div>
 
-    <div class="content-text">
-        <h2>Individuelle Lernunterstützung durch KI</h2>
-        <p>Willkommen beim <strong>School Helper AI</strong>. Unsere Plattform hilft Schülern dabei, komplexe Themen durch maßgeschneiderte Übungsaufgaben besser zu verstehen. Egal ob Mathematik, Physik oder Deutsch – die KI passt die Aufgaben an deine Klassenstufe an.</p>
-        
-        <h3>Warum mit School Helper üben?</h3>
+    <section class="info-content">
+        <h2>Warum School Helper AI nutzen?</h2>
+        <p>
+            <strong>School Helper AI</strong> ist dein digitaler Tutor für den Schulalltag. Unsere Plattform nutzt fortschrittliche künstliche Intelligenz, um Schülern dabei zu helfen, Lerninhalte zu vertiefen. Egal ob du dich auf ein Mathe-Abitur vorbereitest oder Vokabeln für Englisch üben möchtest – wir bieten dir personalisierte Aufgaben in Sekundenschnelle.
+        </p>
+        <h3>Kostenloses Lernen für alle Klassenstufen</h3>
+        <p>
+            Von der Grundschule bis zum Gymnasium (Klasse 1-13) deckt unsere KI alle relevanten Themengebiete ab. Wir glauben, dass Bildung zugänglich sein sollte. Deshalb bieten wir den School Helper AI völlig kostenlos an. 
+        </p>
         <ul>
-            <li><strong>Prüfungsvorbereitung:</strong> Generiere Aufgaben, die genau deinen Lernstoff abdecken.</li>
-            <li><strong>Sofortige Hilfe:</strong> Erhalte in Sekundenschnelle neue Herausforderungen.</li>
-            <li><strong>Kostenlos:</strong> Unser Tool steht allen Schülern zur freien Verfügung.</li>
+            <li>Individuelle Aufgaben basierend auf deinem Thema</li>
+            <li>Inklusive Lösungen zur Selbstkontrolle</li>
+            <li>Optimiert für mobile Endgeräte</li>
         </ul>
-        <p>Nutze die Kraft der künstlichen Intelligenz (Llama 3.3), um deine Noten zu verbessern und Wissenslücken gezielt zu schließen.</p>
-    </div>
+    </section>
 
-    <div class="footer">
-        <div style="margin-bottom: 15px;">
-            <a href="impressum.html">Impressum</a>
-            <a href="datenschutz.html">Datenschutz</a>
-        </div>
-        Created by Dimitrij S. │ Powered by Groq Cloud
-    </div>
+    <footer class="footer">
+        <p>&copy; 2025 School Helper AI │ Erstellt von Dimitrij S.</p>
+        <p>
+            <a href="/impressum.html">Impressum</a>
+            <a href="/datenschutz.html">Datenschutz</a>
+        </p>
+        <p style="font-size: 0.7rem; opacity: 0.5; margin-top: 10px;">
+            Hosting via Netlify. Powered by Groq AI.
+        </p>
+    </footer>
 
-<script>
-    function toggleTheme() {
-        const b = document.body;
-        const t = document.getElementById('tBtn');
-        if (b.hasAttribute('data-theme')) {
-            b.removeAttribute('data-theme');
-            t.innerText = '🌙';
-        } else {
-            b.setAttribute('data-theme', 'dark');
-            t.innerText = '☀️';
+    <script>
+        function toggleTheme() {
+            const b = document.body;
+            const t = document.getElementById('tBtn');
+            if (b.hasAttribute('data-theme')) {
+                b.removeAttribute('data-theme');
+                t.innerText = '🌙 Mode';
+            } else {
+                b.setAttribute('data-theme', 'dark');
+                t.innerText = '☀️ Mode';
+            }
         }
-    }
 
-    function resetGUI() {
-        document.getElementById('result').style.display = "none";
-        document.getElementById('topic').value = "";
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-
-    async function ask() {
-        // ACHTUNG: Key ist im Frontend sichtbar. Nur für Testzwecke!
-        const key = "DEIN_GROQ_API_KEY_HIER_EINTRAGEN";
-        const g = document.getElementById('grade').value, 
-              s = document.getElementById('subject').value, 
-              t = document.getElementById('topic').value;
-
-        if(!t) return alert("Bitte gib ein Thema ein!");
-        
-        document.getElementById('loader').style.display = "block";
-        document.getElementById('result').style.display = "none";
-        
-        try {
-            const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-                method: "POST",
-                headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    model: "llama-3.3-70b-versatile",
-                    messages: [{role: "user", content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}. Füge am Ende kurz die Lösungen hinzu.`}]
-                })
-            });
-            const data = await r.json();
-            document.getElementById('content').innerText = data.choices[0].message.content;
-            document.getElementById('result').style.display = "block";
-        } catch (e) { 
-            alert("Fehler bei der Verbindung zur KI!"); 
-        } finally { 
-            document.getElementById('loader').style.display = "none"; 
+        function reset() {
+            document.getElementById('result').style.display = "none";
+            document.getElementById('topic').value = "";
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
-    }
-</script>
+
+        async function ask() {
+            // HINWEIS: Key im Frontend ist unsicher, aber für Netlify/Client-Side nötig
+            const key = "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"; 
+            const g = document.getElementById('grade').value;
+            const s = document.getElementById('subject').value;
+            const t = document.getElementById('topic').value;
+
+            if(!t) return alert("Bitte Thema eingeben!");
+
+            document.getElementById('loader').style.display = "block";
+            document.getElementById('result').style.display = "none";
+
+            try {
+                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "llama-3.3-70b-versatile",
+                        messages: [{role: "user", content: `Erstelle 3 Übungsaufgaben für Klasse ${g}, Fach ${s}, Thema ${t}. Gib danach die Lösungen an.`}]
+                    })
+                });
+                const data = await response.json();
+                document.getElementById('content').innerText = data.choices[0].message.content;
+                document.getElementById('result').style.display = "block";
+            } catch (err) {
+                alert("Fehler bei der Anfrage!");
+            } finally {
+                document.getElementById('loader').style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
