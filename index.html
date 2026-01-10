@@ -112,7 +112,6 @@
             box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
         }
 
-        /* Ad-Box Styling für AdSense-Compliance */
         .ad-placeholder {
             width: 100%;
             margin: 20px 0;
@@ -136,7 +135,6 @@
             border: 1px solid var(--primary);
         }
 
-        /* SEO & Content Section (Wichtig für AdSense Annahme) */
         .info-content {
             max-width: 600px;
             padding: 40px 20px;
@@ -223,24 +221,15 @@
     <section class="info-content">
         <h2>Warum School Helper AI nutzen?</h2>
         <p>
-            <strong>School Helper AI</strong> ist dein digitaler Tutor für den Schulalltag. Unsere Plattform nutzt fortschrittliche künstliche Intelligenz, um Schülern dabei zu helfen, Lerninhalte zu vertiefen. Egal ob du dich auf ein Mathe-Abitur vorbereitest oder Vokabeln für Englisch üben möchtest – wir bieten dir personalisierte Aufgaben in Sekundenschnelle.
+            <strong>School Helper AI</strong> ist dein digitaler Tutor für den Schulalltag. Unsere Plattform nutzt künstliche Intelligenz, um personalisierte Aufgaben in Sekundenschnelle zu erstellen.
         </p>
-        <h3>Kostenloses Lernen für alle Klassenstufen</h3>
-        <p>
-            Von der Grundschule bis zum Gymnasium (Klasse 1-13) deckt unsere KI alle relevanten Themengebiete ab. Wir glauben, dass Bildung zugänglich sein sollte. Deshalb bieten wir den School Helper AI völlig kostenlos an. 
-        </p>
-        <ul>
-            <li>Individuelle Aufgaben basierend auf deinem Thema</li>
-            <li>Inklusive Lösungen zur Selbstkontrolle</li>
-            <li>Optimiert für mobile Endgeräte</li>
-        </ul>
     </section>
 
     <footer class="footer">
-        <p>&copy; 2025 School Helper AI │ Erstellt von Dimitrij S.</p>
+        <p>&copy; 2026 School Helper AI │ Erstellt von Dimitrij S.</p>
         <p>
-            <a href="/impressum.html">Impressum</a>
-            <a href="/datenschutz.html">Datenschutz</a>
+            <a href="https://symphonious-griffin-8f4f0d.netlify.app" target="_blank" rel="noopener">Impressum</a>
+            <a href="https://datenschutzsh.netlify.app" target="_blank" rel="noopener">Datenschutz</a>
         </p>
         <p style="font-size: 0.7rem; opacity: 0.5; margin-top: 10px;">
             Hosting via Netlify. Powered by Groq AI.
@@ -267,7 +256,6 @@
         }
 
         async function ask() {
-            // HINWEIS: Key im Frontend ist unsicher, aber für Netlify/Client-Side nötig
             const key = "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"; 
             const g = document.getElementById('grade').value;
             const s = document.getElementById('subject').value;
