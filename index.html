@@ -3,132 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Mein DeepSeek AI Chat</title>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); }
-        .gradient-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        .chat-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
+        }
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .user { background: #007bff; color: white; align-self: flex-end; }
+        .assistant { background: #e9ecef; color: black; align-self: flex-start; }
+        .input-area {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            margin-left: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .powered {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #666;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
     </style>
 </head>
-<body class="min-h-screen gradient-bg text-white">
-
-    <!-- Main Container -->
-    <div class="flex h-screen">
-
-        <!-- Sidebar -->
-        <aside class="w-64 bg-black/30 glass border-r border-white/10">
-            <div class="p-6">
-                <h1 class="text-2xl font-bold mb-10">MySoftware</h1>
-                <nav class="space-y-2">
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg bg-white/10 text-white">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path></svg>
-                        <span>Balance</span>
-                    </a>
-                    <a href="#" class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-white/10 transition">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-                        <span>Plans</span>
-                    </a>
-                </nav>
-            </div>
-            <div class="absolute bottom-6 left-6">
-                <button class="text-sm text-gray-400 hover:text-white transition">Abmelden</button>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="flex-1 p-8 overflow-y-auto">
-            <div class="max-w-7xl mx-auto">
-
-                <!-- Header -->
-                <div class="mb-10">
-                    <h2 class="text-4xl font-bold mb-2">Willkommen zurück!</h2>
-                    <p class="text-gray-300">Hier ist dein aktueller Überblick</p>
-                </div>
-
-                <!-- Balance Card -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                    <div class="col-span-1 md:col-span-2">
-                        <div class="glass rounded-2xl p-8">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-gray-300 text-sm uppercase tracking-wider">Aktueller Balance</p>
-                                    <p class="text-5xl font-bold mt-2">127.5 TON</p>
-                                    <p class="text-green-400 text-sm mt-4">+12.3 TON in den letzten 30 Tagen</p>
-                                </div>
-                                <div class="bg-gradient-to-br from-blue-500 to-purple-600 p-6 rounded-xl">
-                                    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20"><path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM5.5 2A3.5 3.5 0 002 5.5v9A3.5 3.5 0 005.5 18h9a3.5 3.5 0 003.5-3.5V5.5A3.5 3.5 0 0014.5 2h-9zM14 7.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glass rounded-2xl p-8">
-                        <p class="text-gray-300 text-sm uppercase tracking-wider">Aktiver Plan</p>
-                        <p class="text-2xl font-bold mt-2">30-Tage-Plan</p>
-                        <p class="text-gray-400 mt-4">Läuft ab am: <span class="text-white font-medium">15. März 2026</span></p>
-                        <div class="mt-6">
-                            <div class="w-full bg-gray-700 rounded-full h-3">
-                                <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full" style="width: 68%"></div>
-                            </div>
-                            <p class="text-sm text-gray-400 mt-2">68% verbraucht</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Plans Section -->
-                <h3 class="text-2xl font-bold mb-6">Verfügbare Pläne</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Plan 1 Tag -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition transform">
-                        <div class="text-center mb-6">
-                            <p class="text-4xl font-bold">3 TON</p>
-                            <p class="text-gray-300 mt-2">pro Tag</p>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-4">1 Tag Zugang</h4>
-                        <ul class="space-y-3 mb-8 text-gray-300">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Vollzugriff für 24 Stunden</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Alle Features</li>
-                        </ul>
-                        <button class="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-medium hover:opacity-90 transition">Jetzt kaufen</button>
-                    </div>
-
-                    <!-- Plan 7 Tage -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition transform border-2 border-purple-500 relative">
-                        <span class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-purple-600 px-4 py-1 rounded-full text-sm font-medium">Beliebt</span>
-                        <div class="text-center mb-6">
-                            <p class="text-4xl font-bold">18 TON</p>
-                            <p class="text-gray-300 mt-2">pro Woche</p>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-4">7 Tage Zugang</h4>
-                        <ul class="space-y-3 mb-8 text-gray-300">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Vollzugriff für 7 Tage</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Spare 14% gegenüber Tagesplan</li>
-                        </ul>
-                        <button class="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl font-medium hover:opacity-90 transition">Jetzt kaufen</button>
-                    </div>
-
-                    <!-- Plan 30 Tage -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition transform">
-                        <div class="text-center mb-6">
-                            <p class="text-4xl font-bold">65 TON</p>
-                            <p class="text-gray-300 mt-2">pro Monat</p>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-4">30 Tage Zugang</h4>
-                        <ul class="space-y-3 mb-8 text-gray-300">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Vollzugriff für 30 Tage</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-400 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg> Spare 28% gegenüber Tagesplan</li>
-                        </ul>
-                        <button class="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-medium hover:opacity-90 transition">Jetzt kaufen</button>
-                    </div>
-                </div>
-            </div>
-        </main>
+<body>
+    <div class="chat-container">
+        <div class="messages" id="messages">
+            <div class="message assistant">Hallo! Ich bin dein DeepSeek AI. Wie kann ich dir helfen?</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Deine Nachricht..." autocomplete="off">
+            <button onclick="sendMessage()">Senden</button>
+        </div>
     </div>
+    <div class="powered">Powered by DeepSeek API</div>
+
+    <script>
+        const API_KEY = "sk-848edfdab77642ecb869377d7048f1b0"; // Dein Schlüssel – nicht teilen!
+        const API_URL = "https://api.deepseek.com/chat/completions";
+        const MODEL = "deepseek-chat";
+
+        let messages = [
+            { role: "system", content: "Du bist ein hilfreicher Assistent." }
+        ];
+
+        function addMessage(content, role) {
+            const messagesDiv = document.getElementById("messages");
+            const msgDiv = document.createElement("div");
+            msgDiv.classList.add("message", role);
+            msgDiv.textContent = content;
+            messagesDiv.appendChild(msgDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById("user-input");
+            const userText = input.value.trim();
+            if (!userText) return;
+
+            addMessage(userText, "user");
+            messages.push({ role: "user", content: userText });
+            input.value = "";
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + API_KEY
+                    },
+                    body: JSON.stringify({
+                        model: MODEL,
+                        messages: messages,
+                        stream: false
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error("API-Fehler: " + response.status);
+                }
+
+                const data = await response.json();
+                const assistantText = data.choices[0].message.content;
+                addMessage(assistantText, "assistant");
+                messages.push({ role: "assistant", content: assistantText });
+            } catch (error) {
+                addMessage("Fehler: " + error.message, "assistant");
+            }
+        }
+
+        // Enter-Taste zum Senden
+        document.getElementById("user-input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
